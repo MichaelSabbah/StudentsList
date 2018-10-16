@@ -1,0 +1,68 @@
+@charset "ISO-8859-1";
+
+body{
+	text-align:center;
+	font-family:arial;
+}
+
+.studentsTable{
+	width:50%;
+	text-align:center;
+	margin:100px auto;
+	border-radius:10px;
+}
+
+.form-control{
+	width:50%;
+	margin:0 auto;
+	text-align:center;
+	border:1px solid black;
+}
+
+.sortOption{
+	text-align:center;
+}
+
+.main-head{
+	background-color: #ffcc80;
+}
+
+#welcome-body{
+	margin-top:150px;
+	background-color:#ffcc80;
+}
+
+#studentsTableBox{
+	background-color:
+}
+
+#getListButton{
+	margin-top:50px;
+}
+
+#pageHeader{
+	margin-bottom:50px;
+}
+
+
+.form-wrapper{
+	width:50%;
+	margin:0 auto;
+	text-align:center;
+}
+
+#secondTable{
+	margin-top:20px;
+}
+
+#newStudentButton{
+	margin:20px;
+}
+
+#newUserForm{
+	margin-top:50px;
+}
+
+#addStudentButton{
+	margin-top:10px;
+}
