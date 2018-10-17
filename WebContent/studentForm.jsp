@@ -20,7 +20,6 @@
 	</head>
 
 <body>
-
   <div class="jumbotron main-head">
     <div class="container">
       <h1>הוספת סטודנט חדש</h1>
@@ -28,18 +27,18 @@
   </div>
   
   <div id="newUserForm" class="form-wrapper">
-  	<form action="/StudentsList/services/StudentsService/insertStudent" method="GET">	
+  	<form action="/StudentsList/services/StudentsService/insertStudent" method="GET" required>	
 	    <div class="form-group">
 	    	<label for="id">ת.ז</label>
-	  		<input type="number" name="id" class="form-control" id="id" placeholder="הקלד ת.ז">
+	  		<input type="number" name="id" class="form-control" id="id" placeholder="הקלד ת.ז" required>
 	  	</div>
 	  	<div class="form-group">
 	  		<label for="firstNameInput">שם פרטי</label>
-	  		<input type="text" name="firstName" class="form-control" id="firstNameInput" placeholder="הקלד שם פרטי">
+	  		<input type="text" name="firstName" class="form-control" id="firstNameInput" placeholder="הקלד שם פרטי" required>
 	  	</div>
 	  	<div class="form-group">
 	  		<label for="lastNameInput">שם משפחה</label>
-	  		<input type="text" name="lastName" class="form-control" id="lastNameInput" placeholder="הקלד שם משפחה">
+	  		<input type="text" name="lastName" class="form-control" id="lastNameInput" placeholder="הקלד שם משפחה" required>
 	  	</div>
 	  	<div class="form-group">
 	  		<br>
@@ -51,22 +50,26 @@
 	  			<option>מכונות</option>
 	  		</select>
 	  	</div>
-	  	<button id="addStudentButton" type="submit" class="btn btn-success"> הוסף סטודנט</button>
+	  	<div id="studentDetailsButtons">
+	  		<button id="editDetailsButton" type="submit" class="btn btn-success">שמור פרטים</button>
+	  		<button id="removeStudentButton" type="submit" class="btn btn-danger">מחק סטודנט</button>
+	  	</div>
+	  	<div id="newStudentButtons">
+	  		<button id="addStudentButton" type="submit" class="btn btn-success"> הוסף סטודנט</button>
+	  	</div>
   	</form> 
   </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script type="text/javascript" src="/StudentsList/js/bootstrap.min.js"></script>
+  
+  <script type="text/javascript" src="/StudentsList/js/jquery.js"></script>
+  
+  <!-- Bootstrap core JavaScript
+  <script type="text/javascript" src="/StudentsList/js/bootstrap.min.js"></script>-->
   
   <!-- Custom scripts for this template -->
-  <script type="text/javascript" src="/StudentsList/js/studentsList.js"></script>
-
-  <!-- Jquery core javascript -->
-  <script src="/StudentsList/js/jquery-3.3.1.min.js"></script>
-
-  <!-- Angular core javascript -->
-  <script src="/StudentsList/js/angular.min.js"></script>
-
+  <script type="text/javascript" src="/StudentsList/js/newStudent.js"></script>
+  <script type="text/javascrit">
+  
+  </script>
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+<%@page import="com.webtech.studentslist.res.IAppConsts"%>
 <%@ page import="com.webtech.studentslist.model.db.dao.impl.StudentDAOMySQL"%>
 <%@ page import="com.webtech.studentslist.controller.services.StudentsServices"%>
 <%@ page import="java.util.List"%>
@@ -11,10 +12,11 @@
 
 		<meta charset="UTF-8">
 		<!-- Bootstrap core CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/StudentsList/css/bootstrap.min.css"/>
 
 		<!-- Custom styles for this template -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="/StudentsList/css/style.css">
+		
 		
 		<title>רשימת סטודנטים</title>
 
@@ -32,11 +34,11 @@
 					<div class="form-group form-wrapper">
 					  <span>חיפוש:<input class="form-control" id="searchingInput" type="text" ng-model="search"></span>
 					  <span>מיין לפי:
-					  	<select class="form-control" name="cars" ng-model="sortCriterion">
-						  <option class="sortOption" value="id">מזהה</option>
-						  <option class="sortOption" value="firstName">שם פרטי</option>
-						  <option class="sortOption" value="lastName">שם משפחה</option>
-						  <option class="sortOption" value="course">מחלקה</option>
+					  	<select class="form-control" name="criterions" ng-model="sortCriterion">
+						  <option class="sortOption" value="<%= IAppConsts.PARAM_ID %>">מזהה</option>
+						  <option class="sortOption" value="<%= IAppConsts.PARAM_FIRST_NAME %>">שם פרטי</option>
+						  <option class="sortOption" value="<%= IAppConsts.PARAM_LAST_NAME%>">שם משפחה</option>
+						  <option class="sortOption" value="<%= IAppConsts.PARAM_COURSE%>">מחלקה</option>
 						</select>
 					  </span>
 				    </div>
@@ -45,14 +47,15 @@
 				<button type="button" class="btn btn-success" id="newStudentButton" 
 				onClick="window.location.href='services/StudentsService/newStudent'">הוספת סטודנט חדש</button>
 				  
-				  <table id="secondTable" class="table table-dark studentsTable">
+				  <table id="secondTable" class="table table-dark studentsTable table-hover">
 				  	  <tr>
 				      	<th>מזהה</th>
 				        <th>שם פרטי</th>
 				        <th>שם משפחה</th>
 				        <th>מחלקה</th>
 				  	  </tr>
-					  <tr ng-repeat="student in students | filter:search | orderBy:sortCriterion">
+					  <tr class="table-row studentsTableRow"  ng-repeat="student in students | filter:search | orderBy:sortCriterion"
+					   ng-click="tableRowClick(student)">
 					    <td>{{ student.id }}</td>
 					    <td>{{ student.firstName }}</td>
 					    <td>{{ student.lastName }}</td>
@@ -60,23 +63,15 @@
 					  </tr>
 				  </table>
 			</div>
-		
-		  <!-- Bootstrap core JavaScript-->
-		  <script type="text/javascript" src="/StudentsList/js/bootstrap.min.js"></script>
-		 
+			
+		  <!--  JQuery core JS -->
+		  <script type="text/javascript" src="js/jquery.js"></script>
+		  
 		  <!-- Custom scripts for this template -->
-		  <script type="text/javascript" src="/StudentsList/js/studentsList.js"></script>
+		  <script type="text/javascript" src="js/students.js"></script>
 		  
-		  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+		  <!--  Angular core JS -->
+		  <script src="js/angular.min.js"></script>
 		  
-		  <script type="text/javascript">
-			  var app = angular.module('myApp', []);
-			  app.controller('myCtrl', function($scope, $http) {
-			      $http.get("services/StudentsService/students")
-			      .then(function(response) {
-			          $scope.students = response.data;
-			      });
-			  });
-		  </script>
 	</body>
 </html>

@@ -14,7 +14,7 @@ public interface IDAO<T> {
 	 * Delete a specific DTO
 	 * @param dtoToDelete The DTO to be deleted
 	 */
-	public void delete(T dtoToDelete);
+	public void delete(long id);
 	
 	/**
 	 * Update the DTO with the specific id with the new DTO details

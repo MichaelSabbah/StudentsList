@@ -45,13 +45,13 @@ public class StudentDAOMySQL implements IStudentDAO {
 	}
 
 	@Override
-	public void delete(Student dtoToDelete) {
+	public void delete(long id) {
 		try {
 			setDBConfiguration();
 			
 			statement = connection.prepareStatement(MySQLConsts.DELETE_STUDENT);
-			statement.setBigDecimal(1, dtoToDelete.getId());
-			
+			statement.setBigDecimal(1, BigDecimal.valueOf(id));
+
 			statement.executeUpdate();
 			
 		}catch(Exception e) {

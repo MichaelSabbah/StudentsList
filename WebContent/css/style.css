@@ -27,6 +27,26 @@ body{
 	background-color: #ffcc80;
 }
 
+.form-wrapper{
+	width:50%;
+	margin:0 auto;
+	text-align:center;
+}
+
+.studentsTableRow{
+	cursor:pointer;
+}
+
+select {
+  text-align: center;
+  text-align-last: center;
+  /* webkit*/
+}
+option {
+  text-align: left;
+  /* reset to left*/
+}
+
 #welcome-body{
 	margin-top:150px;
 	background-color:#ffcc80;
@@ -45,12 +65,6 @@ body{
 }
 
 
-.form-wrapper{
-	width:50%;
-	margin:0 auto;
-	text-align:center;
-}
-
 #secondTable{
 	margin-top:20px;
 }
@@ -65,4 +79,19 @@ body{
 
 #addStudentButton{
 	margin-top:10px;
+}
+
+#studentDetailsButtons{
+	width:50%;
+	margin:0 auto;
+}
+
+#editDetailsButton{
+	margin-top:10px;
+	float:right;
+}
+
+#removeStudentButton{
+	margin-top:10px;
+	float:left;
 }
