@@ -37,6 +37,10 @@ body{
 	cursor:pointer;
 }
 
+.disable{
+	display: none;
+}
+
 select {
   text-align: center;
   text-align-last: center;
@@ -44,6 +48,7 @@ select {
 }
 option {
   text-align: left;
+ 
   /* reset to left*/
 }
 
@@ -84,14 +89,4 @@ option {
 #studentDetailsButtons{
 	width:50%;
 	margin:0 auto;
-}
-
-#editDetailsButton{
-	margin-top:10px;
-	float:right;
-}
-
-#removeStudentButton{
-	margin-top:10px;
-	float:left;
 }

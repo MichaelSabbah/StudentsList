@@ -32,13 +32,10 @@ var STUDENTS = {
 	},
 	
 	openStudentDetailsPage : function(student){
-		alert("openStudentDetailsPage");
-		$.get("services/StudentsService/studentDetails");
-		
+		window.location.href='services/StudentsService/studentDetails?id=' + student.id;
 	},
 	
 	setStudentsTable : function(){
-		alert("setStudentsTable");
 		  var app = angular.module('myApp', []);
 		  app.controller('myCtrl', function($scope, $http) {
 		      $http.get("services/StudentsService/students")

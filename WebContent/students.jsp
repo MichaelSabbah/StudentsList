@@ -1,4 +1,4 @@
-<%@page import="com.webtech.studentslist.res.IAppConsts"%>
+<%@ page import="com.webtech.studentslist.res.IAppConsts"%>
 <%@ page import="com.webtech.studentslist.model.db.dao.impl.StudentDAOMySQL"%>
 <%@ page import="com.webtech.studentslist.controller.services.StudentsServices"%>
 <%@ page import="java.util.List"%>
@@ -55,7 +55,7 @@
 				        <th>מחלקה</th>
 				  	  </tr>
 					  <tr class="table-row studentsTableRow"  ng-repeat="student in students | filter:search | orderBy:sortCriterion"
-					   ng-click="tableRowClick(student)">
+					  ng-click="tableRowClick(student)">
 					    <td>{{ student.id }}</td>
 					    <td>{{ student.firstName }}</td>
 					    <td>{{ student.lastName }}</td>
@@ -71,7 +71,6 @@
 		  <script type="text/javascript" src="js/students.js"></script>
 		  
 		  <!--  Angular core JS -->
-		  <script src="js/angular.min.js"></script>
-		  
+		  <script type="text/javascript" src="js/angular.min.js"></script>
 	</body>
 </html>

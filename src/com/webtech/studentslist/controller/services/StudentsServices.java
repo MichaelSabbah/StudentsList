@@ -2,9 +2,7 @@ package com.webtech.studentslist.controller.services;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import com.sun.jersey.api.view.Viewable;
 import com.webtech.studentslist.mode.db.dao.logic.DBType;
@@ -47,29 +44,31 @@ public class StudentsServices {
 	@Path("/newStudent")
 	public Viewable newStudentPage(@Context HttpServletRequest request){
 		  request.setAttribute("newStudent", true);
+		  System.out.println("newStudentPage");
 		  return new Viewable("/studentForm.jsp");
 	}
 	
 	@GET
 	@Path("/studentDetails")
-	public Viewable studentsDetails(@Context HttpServletRequest request) {
+	public Viewable studentsDetails(@QueryParam(IAppConsts.PARAM_ID) long id,
+									@Context HttpServletRequest request) {
 		System.out.println("studentsDetails");
-		System.out.println(request.getPathInfo());
+		Student student = studentDAO.getById(id);
+		System.out.println("id: " + id);
+		request.setAttribute("student",student);
 		return new Viewable("/studentForm.jsp");
 	}
 	
 	@GET
 	@Path("/insertStudent")
 	public void insertNewStudent(@QueryParam(IAppConsts.PARAM_ID) long id,
-									 @QueryParam(IAppConsts.PARAM_FIRST_NAME) String firstName,
-									 @QueryParam(IAppConsts.PARAM_LAST_NAME) String lastName,
-									 @QueryParam(IAppConsts.PARAM_COURSE) String course,
-									 @Context ServletContext context,
-									 @Context HttpServletRequest request,
-									 @Context HttpServletResponse response
+								 @QueryParam(IAppConsts.PARAM_FIRST_NAME) String firstName,
+								 @QueryParam(IAppConsts.PARAM_LAST_NAME) String lastName,
+								 @QueryParam(IAppConsts.PARAM_COURSE) String course,
+								 @Context ServletContext context,
+								 @Context HttpServletRequest request,
+								 @Context HttpServletResponse response
 									 ) {
-		
-		System.out.println("Enter insertNewStudent method");
 		
 		//Create new student
 		Student student = new Student(BigDecimal.valueOf(id),firstName,lastName,course);
@@ -85,17 +84,51 @@ public class StudentsServices {
 		}
 	}
 	
-	
+	@GET
+	@Path("/getStudent")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Student getStudentById(@QueryParam(IAppConsts.PARAM_ID) long id) {
+		System.out.println("getStudentById");
+		Student student = studentDAO.getById(id);
+		return student;
+	}
 	
 	@GET
 	@Path("/deleteStudent")
-	public Response deleteStudent(@QueryParam(IAppConsts.PARAM_ID) long id) {
+	public void deleteStudent(@QueryParam(IAppConsts.PARAM_ID) long id,
+							  @Context HttpServletRequest request,
+							  @Context HttpServletResponse response) {
 		
 		//Delete student with the given id
 		studentDAO.delete(id);
-		
+
 		//Redirect to main page (students list)
-		return null;
+		try {
+			response.sendRedirect("/StudentsList");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	@GET
+	@Path("/updateStudentDetails")
+	public void updateStudentDetails(@QueryParam(IAppConsts.PARAM_ID) long id,
+									 @QueryParam(IAppConsts.PARAM_FIRST_NAME) String firstName,
+									 @QueryParam(IAppConsts.PARAM_LAST_NAME) String lastName,
+									 @QueryParam(IAppConsts.PARAM_COURSE) String course,
+									 @Context ServletContext context,
+									 @Context HttpServletRequest request,
+									 @Context HttpServletResponse response) {
+		
+		Student student = new Student(BigDecimal.valueOf(id),firstName,lastName,course);
+		
+		//Update the student details
+		studentDAO.update(student);	
 	
+		//Redirect to main page (students list)
+		try {
+			response.sendRedirect("/StudentsList");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
